@@ -16,8 +16,11 @@ public class ClienteController {
     }
 
     @GetMapping
-    public List<Cliente> listarTodos() {
-        return service.listarTodos();
+    public List<Cliente> listarTodos(
+            @RequestParam(required = false) String nome,
+            @RequestParam(required = false) String email) {
+
+        return service.buscarComFiltros(nome, email); // chamando o metodo com filtros
     }
 
     @GetMapping("/{id}")
