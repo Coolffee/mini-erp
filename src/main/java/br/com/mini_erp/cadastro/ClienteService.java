@@ -33,7 +33,7 @@ public class ClienteService {
     public Cliente atualizar(Long id, Cliente clienteAtualizado) {
         Cliente clienteExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-
+        // Atualiza apenas os campos necessários
         clienteExistente.setNome(clienteAtualizado.getNome());
         clienteExistente.setEmail(clienteAtualizado.getEmail());
         clienteExistente.setDataNascimento(clienteAtualizado.getDataNascimento());
