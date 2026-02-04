@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="br.com.mini_erp.MiniErpApplicationTests" tests="1" skipped="0" failures="0" errors="0" timestamp="2026-02-04T21:42:37.230Z" hostname="DESKTOP-J5TVF98" time="0.342">
+  <properties/>
+  <testcase name="contextLoads()" classname="br.com.mini_erp.MiniErpApplicationTests" time="0.342"/>
+  <system-out><![CDATA[18:42:32.541 [Test worker] INFO org.springframework.test.context.support.AnnotationConfigContextLoaderUtils -- Could not detect default configuration classes for test class [br.com.mini_erp.MiniErpApplicationTests]: MiniErpApplicationTests does not declare any static, non-private, non-final, nested classes annotated with @Configuration.
+18:42:32.641 [Test worker] INFO org.springframework.boot.test.context.SpringBootTestContextBootstrapper -- Found @SpringBootConfiguration br.com.mini_erp.MiniErpApplication for test class br.com.mini_erp.MiniErpApplicationTests
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.10)
+
+2026-02-04T18:42:33.027-03:00  INFO 16596 --- [mini-erp] [    Test worker] b.com.mini_erp.MiniErpApplicationTests   : Starting MiniErpApplicationTests using Java 17.0.18 with PID 16596 (started by Hugo in D:\arg\Github\mini-erp)
+2026-02-04T18:42:33.028-03:00  INFO 16596 --- [mini-erp] [    Test worker] b.com.mini_erp.MiniErpApplicationTests   : No active profile set, falling back to 1 default profile: "default"
+2026-02-04T18:42:33.726-03:00  INFO 16596 --- [mini-erp] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2026-02-04T18:42:33.796-03:00  INFO 16596 --- [mini-erp] [    Test worker] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 60 ms. Found 6 JPA repository interfaces.
+2026-02-04T18:42:34.277-03:00  INFO 16596 --- [mini-erp] [    Test worker] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2026-02-04T18:42:34.330-03:00  INFO 16596 --- [mini-erp] [    Test worker] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.6.41.Final
+2026-02-04T18:42:34.361-03:00  INFO 16596 --- [mini-erp] [    Test worker] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2026-02-04T18:42:34.607-03:00  INFO 16596 --- [mini-erp] [    Test worker] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2026-02-04T18:42:34.635-03:00  INFO 16596 --- [mini-erp] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2026-02-04T18:42:34.781-03:00  INFO 16596 --- [mini-erp] [    Test worker] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection org.postgresql.jdbc.PgConnection@4e61a863
+2026-02-04T18:42:34.782-03:00  INFO 16596 --- [mini-erp] [    Test worker] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2026-02-04T18:42:34.840-03:00  INFO 16596 --- [mini-erp] [    Test worker] org.hibernate.orm.connections.pooling    : HHH10001005: Database info:
+	Database JDBC URL [Connecting through datasource 'HikariDataSource (HikariPool-1)']
+	Database driver: undefined/unknown
+	Database version: 15.15
+	Autocommit mode: undefined/unknown
+	Isolation level: undefined/unknown
+	Minimum pool size: undefined/unknown
+	Maximum pool size: undefined/unknown
+2026-02-04T18:42:35.693-03:00  INFO 16596 --- [mini-erp] [    Test worker] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2026-02-04T18:42:35.801-03:00  INFO 16596 --- [mini-erp] [    Test worker] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2026-02-04T18:42:36.060-03:00  INFO 16596 --- [mini-erp] [    Test worker] o.s.d.j.r.query.QueryEnhancerFactory     : Hibernate is in classpath; If applicable, HQL parser will be used.
+2026-02-04T18:42:36.563-03:00  WARN 16596 --- [mini-erp] [    Test worker] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2026-02-04T18:42:37.213-03:00  INFO 16596 --- [mini-erp] [    Test worker] b.com.mini_erp.MiniErpApplicationTests   : Started MiniErpApplicationTests in 4.438 seconds (process running for 5.432)
+]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

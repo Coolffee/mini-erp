@@ -10,6 +10,10 @@ import java.time.LocalDate;
 @Table(name = "clientes")
 public class Cliente {
 
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,12 +35,12 @@ public class Cliente {
     public Cliente() {
     }
 
-    // Construtor completo
-    public Cliente(String nome, String email, LocalDate dataNascimento, String documento) {
+    public Cliente(String nome, String email, LocalDate dataNascimento, String documento, Empresa empresa) {
         this.nome = nome;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.documento = documento;
+        this.empresa = empresa;
     }
 
     // Getters e Setters
@@ -79,4 +83,13 @@ public class Cliente {
     public void setDocumento(String documento) {
         this.documento = documento;
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
 }

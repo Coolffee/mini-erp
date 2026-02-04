@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
+import br.com.mini_erp.cadastro.Empresa;
 
 @Entity
 @Table(name = "produtos")
@@ -12,6 +13,10 @@ public class Produto {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
 
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
@@ -27,11 +32,12 @@ public class Produto {
     // Construtores
     public Produto() {}
 
-    public Produto(String nome, String descricao, BigDecimal preco, Integer quantidadeEstoque) {
+    public Produto(String nome, String descricao, BigDecimal preco, Integer quantidadeEstoque, Empresa empresa) {
         this.nome = nome;
         this.descricao = descricao;
         this.preco = preco;
         this.quantidadeEstoque = quantidadeEstoque;
+        this.empresa = empresa;
     }
 
     // Getters e Setters
@@ -49,4 +55,7 @@ public class Produto {
 
     public Integer getQuantidadeEstoque() { return quantidadeEstoque; }
     public void setQuantidadeEstoque(Integer quantidadeEstoque) { this.quantidadeEstoque = quantidadeEstoque; }
+
+    public Empresa getEmpresa() { return empresa; }
+    public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
 }

@@ -6,6 +6,7 @@ import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import br.com.mini_erp.cadastro.Empresa;
 
 @Entity
 @Table(name = "pedidos")
@@ -14,6 +15,11 @@ public class Pedido {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
+
 
     @NotNull(message = "Cliente é obrigatório")
     @ManyToOne
