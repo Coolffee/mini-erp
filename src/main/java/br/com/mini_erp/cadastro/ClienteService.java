@@ -42,6 +42,16 @@ public class ClienteService {
         return repository.save(clienteExistente);
     }
 
+    public List<Cliente> buscarComFiltros(String nome, String email) {
+        if (nome != null && !nome.isEmpty()) {
+            return repository.findByNomeContainingIgnoreCase(nome);
+        } else if (email != null && !email.isEmpty()) {
+            return repository.findByEmailContainingIgnoreCase(email);
+        } else {
+            return repository.findAll();
+        }
+    }
+
 }
 
 
