@@ -24,14 +24,19 @@ public class Cliente {
     @NotNull(message = "Data de nascimento é obrigatória")
     private LocalDate dataNascimento;
 
+    @NotBlank(message = "Documento é obrigatório") // adicionando validação
+    private String documento;
+
     // Construtores
     public Cliente() {
     }
 
-    public Cliente(String nome, String email, LocalDate dataNascimento) {
+    // Construtor completo
+    public Cliente(String nome, String email, LocalDate dataNascimento, String documento) {
         this.nome = nome;
         this.email = email;
         this.dataNascimento = dataNascimento;
+        this.documento = documento;
     }
 
     // Getters e Setters
@@ -65,5 +70,13 @@ public class Cliente {
 
     public void setDataNascimento(LocalDate dataNascimento) {
         this.dataNascimento = dataNascimento;
+    }
+
+    public String getDocumento() {
+        return documento;
+    }
+
+    public void setDocumento(String documento) {
+        this.documento = documento;
     }
 }
