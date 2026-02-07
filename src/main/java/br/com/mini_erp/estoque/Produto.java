@@ -5,9 +5,11 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import br.com.mini_erp.cadastro.Empresa;
+import org.hibernate.annotations.Filter;
 
 @Entity
 @Table(name = "produtos")
+@Filter(name = "tenantFilter", condition = "empresa_id = :tenantId")
 public class Produto {
 
     @Id

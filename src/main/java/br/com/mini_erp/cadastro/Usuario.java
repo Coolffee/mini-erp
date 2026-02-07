@@ -2,9 +2,11 @@ package br.com.mini_erp.cadastro;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.Filter;
 
 @Entity
 @Table(name = "usuarios")
+@Filter(name = "tenantFilter", condition = "empresa_id = :tenantId")
 public class Usuario {
 
     @Id

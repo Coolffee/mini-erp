@@ -1,24 +1,11 @@
-package br.com.mini_erp.cadastro;
+package br.com.mini_erp.cadastro.dto;
 
-import jakarta.persistence.*;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import java.time.LocalDate;
-import org.hibernate.annotations.Filter;
 
-@Entity
-@Table(name = "clientes")
-@Filter(name = "tenantFilter", condition = "empresa_id = :tenantId")
-public class Cliente {
-
-    @ManyToOne
-    @JoinColumn(name = "empresa_id")
-    private Empresa empresa;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ClienteRequestDTO {
 
     @NotBlank(message = "Nome é obrigatório")
     private String nome;
@@ -30,28 +17,17 @@ public class Cliente {
     @NotNull(message = "Data de nascimento é obrigatória")
     private LocalDate dataNascimento;
 
-    @NotBlank(message = "Documento é obrigatório") // adicionando validação
+    @NotBlank(message = "Documento é obrigatório")
     private String documento;
 
-    // Construtores
-    public Cliente() {
-    }
+    // Construtores, Getters e Setters
+    public ClienteRequestDTO() {}
 
-    public Cliente(String nome, String email, LocalDate dataNascimento, String documento, Empresa empresa) {
+    public ClienteRequestDTO(String nome, String email, LocalDate dataNascimento, String documento) {
         this.nome = nome;
         this.email = email;
         this.dataNascimento = dataNascimento;
         this.documento = documento;
-        this.empresa = empresa;
-    }
-
-    // Getters e Setters
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getNome() {
@@ -85,13 +61,4 @@ public class Cliente {
     public void setDocumento(String documento) {
         this.documento = documento;
     }
-
-    public Empresa getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(Empresa empresa) {
-        this.empresa = empresa;
-    }
-
 }

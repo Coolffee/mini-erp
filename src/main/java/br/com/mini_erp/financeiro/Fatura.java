@@ -3,12 +3,13 @@ package br.com.mini_erp.financeiro;
 import br.com.mini_erp.vendas.Pedido;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-
+import org.hibernate.annotations.Filter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "faturas")
+@Filter(name = "tenantFilter", condition = "pedido.empresa_id = :tenantId")
 public class Fatura {
 
     @Id

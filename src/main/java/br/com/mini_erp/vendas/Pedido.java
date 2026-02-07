@@ -7,9 +7,12 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import br.com.mini_erp.cadastro.Empresa;
+import org.hibernate.annotations.Filter;
+
 
 @Entity
 @Table(name = "pedidos")
+@Filter(name = "tenantFilter", condition = "empresa_id = :tenantId")
 public class Pedido {
 
     @Id

@@ -2,9 +2,18 @@ package br.com.mini_erp.cadastro;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.annotations.Filter;
+import org.hibernate.annotations.FilterDef;
+import org.hibernate.annotations.ParamDef;
 
 @Entity
 @Table(name = "empresas")
+// -------------------------------------------------------------------
+// Adicione a definição do filtro aqui.
+// O nome "tenantFilter" é arbitrário, mas deve ser único.
+// "tenantId" é o nome do parâmetro que o filtro espera.
+@FilterDef(name = "tenantFilter", parameters = @ParamDef(name = "tenantId", type = Long.class))
+// -------------------------------------------------------------------
 public class Empresa {
 
     @Id
@@ -28,3 +37,4 @@ public class Empresa {
     public String getNome() { return nome; }
     public void setNome(String nome) { this.nome = nome; }
 }
+
