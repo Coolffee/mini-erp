@@ -22,11 +22,11 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
         Usuario usuario = repository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado"));
+                .orElseThrow(() -> new RuntimeException("Usuário não encontrado")); // Melhorar tratamento de exceção futuramente
         if (!passwordEncoder.matches(senha, usuario.getSenha())) {
             return ResponseEntity.status(401).body("Senha incorreta");
         }
-        String token = jwtUtil.gerarToken(email);
+        String token = jwtUtil.gerarToken(email, usuario.getEmpresa().getId());
         return ResponseEntity.ok(token);
     }
 }
