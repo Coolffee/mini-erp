@@ -2,17 +2,20 @@ package br.com.mini_erp.shared;
 
 public class TenantContext {
 
-    private static final ThreadLocal<Long> currentTenantId = new ThreadLocal<>();
+    private static final ThreadLocal<Long> CURRENT_TENANT = new ThreadLocal<>();
 
-    public static void setcurrentTenantId(Long tenantId){
-        currentTenantId.set(tenantId);
+    // Define o tenant atual
+    public static void setCurrentTenantId(Long tenantId) { // Este é o método que o JwtRequestFilter espera
+        CURRENT_TENANT.set(tenantId);
     }
 
-    public static Long getCurrentTenantId() {
-        return currentTenantId.get();
+    // Recupera o tenant atual
+    public static Long getCurrentTenantId() { // Este é o método que o TenantFilterAspect espera
+        return CURRENT_TENANT.get();
     }
 
-    public static void clear(){
-            currentTenantId.remove();
-        }
+    // Limpa o tenant após a requisição
+    public static void clear() {
+        CURRENT_TENANT.remove();
+    }
 }
