@@ -61,4 +61,13 @@ public class Pedido {
             this.itens.forEach(item -> item.setPedido(this));
         }
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
 }
