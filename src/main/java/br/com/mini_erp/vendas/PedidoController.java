@@ -1,9 +1,23 @@
 package br.com.mini_erp.vendas;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.http.HttpStatus;
 import jakarta.validation.Valid;
+import br.com.mini_erp.cadastro.Cliente;
+import br.com.mini_erp.cadastro.ClienteRepository;
+import br.com.mini_erp.cadastro.Empresa;
+import br.com.mini_erp.cadastro.EmpresaRepository;
+import br.com.mini_erp.estoque.Produto;
+import br.com.mini_erp.estoque.ProdutoRepository;
+import br.com.mini_erp.shared.TenantContext;
+import br.com.mini_erp.vendas.dto.PedidoItemRequestDTO;
+import br.com.mini_erp.vendas.dto.PedidoItemResponseDTO;
+import br.com.mini_erp.vendas.dto.PedidoRequestDTO;
+import br.com.mini_erp.vendas.dto.PedidoResponseDTO;
+import org.springframework.http.ResponseEntity;
+import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/pedidos")

@@ -1,6 +1,7 @@
 package br.com.mini_erp.cadastro;
 
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional; // Importe Transactional
 import java.util.List;
 
 @Service
@@ -16,7 +17,9 @@ public class ClienteService {
         return repository.findAll();
     }
 
+    @Transactional // Adicionado para garantir a transação na persistência
     public Cliente salvar(Cliente cliente) {
+        // Antes de salvar, pode-se adicionar validações ou lógicas de negócio adicionais
         return repository.save(cliente);
     }
 
@@ -26,14 +29,21 @@ public class ClienteService {
         );
     }
 
+    @Transactional
     public void deletar(Long id) {
+        // Antes de deletar, você pode verificar dependências ou status
         repository.deleteById(id);
     }
 
+    @Transactional
     public Cliente atualizar(Long id, Cliente clienteAtualizado) {
         Cliente clienteExistente = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
-        // Atualiza apenas os campos necessários
+
+        // O ID da empresa do cliente existente NÃO DEVE ser alterado aqui.
+        // O multi-tenancy garante que você só acessa clientes da sua empresa.
+        // Se a empresa for setada no DTO de Request, ela deve ser ignorada ou validada.
+        // Para simplificar, estamos apenas copiando campos que o RequestDTO enviaria.
         clienteExistente.setNome(clienteAtualizado.getNome());
         clienteExistente.setEmail(clienteAtualizado.getEmail());
         clienteExistente.setDataNascimento(clienteAtualizado.getDataNascimento());
@@ -53,5 +63,6 @@ public class ClienteService {
     }
 
 }
+
 
 
