@@ -1,7 +1,8 @@
 package br.com.mini_erp.cadastro;
 
+import br.com.mini_erp.shared.exception.ResourceNotFoundException; // Importe
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional; // Importe Transactional
+import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 
 @Service
@@ -17,33 +18,31 @@ public class ClienteService {
         return repository.findAll();
     }
 
-    @Transactional // Adicionado para garantir a transação na persistência
+    @Transactional
     public Cliente salvar(Cliente cliente) {
-        // Antes de salvar, pode-se adicionar validações ou lógicas de negócio adicionais
         return repository.save(cliente);
     }
 
     public Cliente buscarPorId(Long id) {
         return repository.findById(id).orElseThrow(() ->
-                new RuntimeException("Cliente não encontrado")
+                new ResourceNotFoundException("Cliente não encontrado com ID: " + id) // <<-- ALTERADO AQUI
         );
     }
 
     @Transactional
     public void deletar(Long id) {
-        // Antes de deletar, você pode verificar dependências ou status
+        // Opcional: Verificar se existe antes de deletar
+        if (!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Cliente não encontrado com ID: " + id);
+        }
         repository.deleteById(id);
     }
 
     @Transactional
     public Cliente atualizar(Long id, Cliente clienteAtualizado) {
         Cliente clienteExistente = repository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cliente não encontrado"));
+                .orElseThrow(() -> new ResourceNotFoundException("Cliente não encontrado com ID: " + id)); // <<-- ALTERADO AQUI
 
-        // O ID da empresa do cliente existente NÃO DEVE ser alterado aqui.
-        // O multi-tenancy garante que você só acessa clientes da sua empresa.
-        // Se a empresa for setada no DTO de Request, ela deve ser ignorada ou validada.
-        // Para simplificar, estamos apenas copiando campos que o RequestDTO enviaria.
         clienteExistente.setNome(clienteAtualizado.getNome());
         clienteExistente.setEmail(clienteAtualizado.getEmail());
         clienteExistente.setDataNascimento(clienteAtualizado.getDataNascimento());
@@ -61,7 +60,6 @@ public class ClienteService {
             return repository.findAll();
         }
     }
-
 }
 
 

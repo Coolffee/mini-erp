@@ -1,9 +1,12 @@
 package br.com.mini_erp.cadastro;
 
+import br.com.mini_erp.shared.exception.ResourceNotFoundException; // Importe ResourceNotFoundException
+import br.com.mini_erp.shared.exception.BusinessException; // Importe BusinessException
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import br.com.mini_erp.shared.JwtUtil;
+import org.springframework.security.core.userdetails.UsernameNotFoundException; // Importe essa exceção se for usá-la aqui
 
 @RestController
 @RequestMapping("/usuarios")
@@ -22,9 +25,15 @@ public class UsuarioController {
     @PostMapping("/login")
     public ResponseEntity<String> login(@RequestParam String email, @RequestParam String senha) {
         Usuario usuario = repository.findByEmail(email)
-                .orElseThrow(() -> new RuntimeException("Usuário não encontrado")); // Melhorar tratamento de exceção futuramente
+                .orElseThrow(() -> new ResourceNotFoundException("Usuário não encontrado com e-mail: " + email)); // <<-- ALTERADO AQUI
+
         if (!passwordEncoder.matches(senha, usuario.getSenha())) {
-            return ResponseEntity.status(401).body("Senha incorreta");
+            // Em um sistema real, para evitar enumeração de usuários,
+            // é comum retornar uma mensagem mais genérica como "Credenciais inválidas"
+            // para ambos os casos de usuário não encontrado ou senha incorreta.
+            // Aqui, para demonstração, mantemos o 401 para senha incorreta explicitamente.
+            throw new BusinessException("Senha incorreta"); // <<-- ALTERADO AQUI
+            // return ResponseEntity.status(401).body("Senha incorreta"); // Outra opção
         }
         String token = jwtUtil.gerarToken(email, usuario.getEmpresa().getId());
         return ResponseEntity.ok(token);
