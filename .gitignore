@@ -1,16 +1,31 @@
-# Compiled class file
-*.class
+# Arquivos de Build do Gradle
+.gradle/
+build/
 
-# Log file
+# Caches e arquivos da IDE (IntelliJ IDEA)
+.idea/
+*.iml
+*.ipr
+*.iws
+out/
+
+# Caches e arquivos da IDE (VS Code)
+.vscode/
+
+# Logs da Aplicação
 *.log
+logs/
 
-# BlueJ files
+# Arquivos de Dependências
+# Esta linha é importante se o gradle wrapper não for usado ou se houver jars externos no diretório lib
+# lib/
 *.ctxt
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
+*.class
 
-# Package Files #
+# Arquivos de Empacotamento (JARs/WARs)
 *.jar
 *.war
 *.nar
@@ -19,6 +34,15 @@
 *.tar.gz
 *.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
-replay_pid*
+# Informações de Segurança/Configuração Local (MUITO IMPORTANTE!)
+# O seu jwt.secret está no application.properties.
+# Se você usar arquivos de perfil específicos para o ambiente local/dev:
+application-dev.properties
+application-local.properties
+application-prod.properties
+.env
+# Se você usar variáveis de ambiente em um arquivo .env
+
+# Arquivos do sistema operacional
+.DS_Store # macOS
+Thumbs.db # Windows
