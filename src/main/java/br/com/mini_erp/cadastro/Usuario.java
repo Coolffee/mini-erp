@@ -18,7 +18,11 @@ public class Usuario {
     private String email;
 
     @NotBlank
-    private String senha; // futuramente hash
+    private String senha; // Hash da senha
+
+    // Armazena "ROLE_ADMIN", "ROLE_USER", etc.
+    @NotBlank
+    private String role;
 
     @ManyToOne
     @JoinColumn(name = "empresa_id")
@@ -26,12 +30,14 @@ public class Usuario {
 
     public Usuario() {}
 
-    public Usuario(String email, String senha, Empresa empresa) {
+    public Usuario(String email, String senha, String role, Empresa empresa) {
         this.email = email;
         this.senha = senha;
+        this.role = role;
         this.empresa = empresa;
     }
 
+    // Getters e Setters
     public Long getId() { return id; }
     public void setId(Long id) { this.id = id; }
 
@@ -40,6 +46,9 @@ public class Usuario {
 
     public String getSenha() { return senha; }
     public void setSenha(String senha) { this.senha = senha; }
+
+    public String getRole() { return role; }
+    public void setRole(String role) { this.role = role; }
 
     public Empresa getEmpresa() { return empresa; }
     public void setEmpresa(Empresa empresa) { this.empresa = empresa; }
